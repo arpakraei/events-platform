@@ -8,17 +8,21 @@ const event = {
     "The largest React conference in Scandinavia. Two tracks covering the latest in React 19, Server Components, and the evolving frontend ecosystem. Keynotes from core React team members and community leaders.",
   price: 149,
   category: "Conference",
+  status: "Sold out",
 };
 
-export default function EventCard() {
+export default function EventDetail() {
   return (
     <div>
       <h3>{event.name}</h3>
       <div>Date {event.date}</div>
+      <div>Time {event.time}</div>
       <div>City {event.city}</div>
       <div>Venue {event.venue}</div>
       <div>Category {event.category}</div>
       <div>Price €{event.price}</div>
+      <div>Status {event.status}</div>
+      <div>Description {event.description}</div>
     </div>
   );
 }
