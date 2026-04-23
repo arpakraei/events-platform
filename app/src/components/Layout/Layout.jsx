@@ -1,58 +1,29 @@
-import { Link, Outlet } from "react-router-dom";
-import hyfLogo from "../../assets/hyf.svg";
-import { useAuth } from "../../context/AuthContext.jsx";
+import style from "./Layout.module.css";
 
-export default function Layout() {
-  const { user, logout } = useAuth();
-
+export default function Layout({ children }) {
   return (
-    <div>
-      <header>
-        <nav
-          style={{
-            width: "100%",
-            display: "flex",
-            gap: "20px",
-            justifyContent: "center",
-            alignItems: "center",
-            padding: "10px 20px",
-          }}
-        >
-          <a
-            href="https://www.hackyourfuture.dk/"
-            target="_blank"
-            className="link"
-          >
-            <img
-              src={hyfLogo}
-              alt="HackYourFuture logo"
-              className="logo"
-              width={200}
-              style={{ padding: "20px" }}
-            />
-          </a>
-          {/* Navigation links go here — e.g. link to event list, cart, login */}
-          <Link to="/events" className="link">
+    <div className={style.layout}>
+      <header className={style.header}>
+        <nav className={style.nav}>
+          <a href="#events" className={style.navLink}>
             Events
-          </Link>
-
-          {user && (
-            <>
-              <span>{user.email}</span>
-              <button onClick={logout}>Sign out</button>
-            </>
-          )}
-
-          <Link to="/login">Login</Link>
-          <Link to="/register">Register</Link>
+          </a>
+          <a href="#cart" className={style.navLink}>
+            Cart
+          </a>
+          <a href="#login" className={style.navLink}>
+            Login
+          </a>
         </nav>
       </header>
 
-      <main>
-        <Outlet />
-      </main>
+      <main className={style.main}>{children}</main>
 
-      <footer>{/* Footer content goes here */}</footer>
+      <footer className={style.footer}>
+        <p className={style.copyright}>
+          © 2026 HackYourFuture. All rights reserved.
+        </p>
+      </footer>
     </div>
   );
 }

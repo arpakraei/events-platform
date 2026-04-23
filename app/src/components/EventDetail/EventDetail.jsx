@@ -1,3 +1,5 @@
+import styles from "./EventDetail.module.css";
+
 const event = {
   name: "React Copenhagen Conference 2026",
   date: "2026-04-15",
@@ -13,16 +15,38 @@ const event = {
 
 export default function EventDetail() {
   return (
-    <div>
-      <h3>{event.name}</h3>
-      <div>Date {event.date}</div>
-      <div>Time {event.time}</div>
-      <div>City {event.city}</div>
-      <div>Venue {event.venue}</div>
-      <div>Category {event.category}</div>
-      <div>Price €{event.price}</div>
-      <div>Status {event.status}</div>
-      <div>Description {event.description}</div>
-    </div>
+    <article className={styles.card}>
+      <h2 className={styles.name}>{event.name}</h2>
+      <div className={styles.details}>
+        <div className={styles.row}>
+          <span className={styles.label}>Date</span>
+          <span className={styles.value}>{event.date}</span>
+        </div>
+        <div className={styles.row}>
+          <span className={styles.label}>Time</span>
+          <span className={styles.value}>{event.time}</span>
+        </div>
+        <div className={styles.row}>
+          <span className={styles.label}>City</span>
+          <span className={styles.value}>{event.city}</span>
+        </div>
+        <div className={styles.row}>
+          <span className={styles.label}>Venue</span>
+          <span className={styles.value}>{event.venue}</span>
+        </div>
+        <div className={styles.row}>
+          <span className={styles.label}>Category</span>
+          <span className={styles.value}>{event.category}</span>
+        </div>
+      </div>
+      <div className={styles.footer}>
+        <span className={styles.price}>€{event.price}</span>
+        <span className={styles.status}>{event.status}</span>
+      </div>
+      <div className={styles.descriptionSection}>
+        <span className={styles.descriptionLabel}>Description</span>
+        <p className={styles.description}>{event.description}</p>
+      </div>
+    </article>
   );
 }

@@ -1,3 +1,5 @@
+import styles from "./EventCard.module.css";
+
 const event = {
   name: "React Copenhagen Conference 2026",
   date: "2026-04-15",
@@ -12,13 +14,27 @@ const event = {
 
 export default function EventCard() {
   return (
-    <div>
-      <h3>{event.name}</h3>
-      <div>Date {event.date}</div>
-      <div>City {event.city}</div>
-      <div>Venue {event.venue}</div>
-      <div>Category {event.category}</div>
-      <div>Price €{event.price}</div>
-    </div>
+    <article className={styles.card}>
+      <h3 className={styles.name}>{event.name}</h3>
+      <div className={styles.details}>
+        <div className={styles.row}>
+          <span className={styles.label}>Date</span>
+          <span className={styles.value}>{event.date}</span>
+        </div>
+        <div className={styles.row}>
+          <span className={styles.label}>City</span>
+          <span className={styles.value}>{event.city}</span>
+        </div>
+        <div className={styles.row}>
+          <span className={styles.label}>Venue</span>
+          <span className={styles.value}>{event.venue}</span>
+        </div>
+        <div className={styles.row}>
+          <span className={styles.label}>Category</span>
+          <span className={styles.value}>{event.category}</span>
+        </div>
+      </div>
+      <div className={styles.price}>€{event.price}</div>
+    </article>
   );
 }
