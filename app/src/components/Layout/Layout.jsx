@@ -1,6 +1,7 @@
+import { Outlet } from "react-router-dom";
 import style from "./Layout.module.css";
 
-export default function Layout({ children }) {
+export default function Layout() {
   return (
     <div className={style.layout}>
       <header className={style.header}>
@@ -17,7 +18,9 @@ export default function Layout({ children }) {
         </nav>
       </header>
 
-      <main className={style.main}>{children}</main>
+      <main className={style.main}>
+        <Outlet />
+      </main>
 
       <footer className={style.footer}>
         <p className={style.copyright}>
