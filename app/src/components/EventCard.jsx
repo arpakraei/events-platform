@@ -7,6 +7,8 @@ export default function EventCard({
   venue,
   category,
   price,
+  ticketsAvailable,
+  totalTickets,
 }) {
   return (
     <article className={styles.card}>
@@ -29,7 +31,12 @@ export default function EventCard({
           <span className={styles.value}>{category}</span>
         </div>
       </div>
-      <div className={styles.price}>€{price}</div>
+      <div className={styles.price}>{price === 0 ? "Free" : `€${price}`}</div>
+      <div className={styles.row}>
+        {ticketsAvailable === 0
+          ? "Sold Out"
+          : `${ticketsAvailable} of ${totalTickets} tickets left`}{" "}
+      </div>
     </article>
   );
 }

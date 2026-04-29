@@ -17,7 +17,9 @@ export default function EventList() {
               venue={event.venue}
               city={event.city}
               category={event.category}
-              price={event.price === 0 ? "Free" : `${event.price}`}
+              price={event.price}
+              ticketsAvailable={event.ticketsAvailable}
+              totalTickets={event.totalTickets}
             />
           </li>
         );
