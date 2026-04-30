@@ -86,3 +86,43 @@
   color: #525252;
   line-height: 1.6;
 }
+.quantitySelector {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.quantityButton {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #e5e5e5;
+  background: white;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.quantityButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.quantityValue {
+  font-size: 1.125rem;
+  font-weight: 600;
+  min-width: 24px;
+  text-align: center;
+}
+.quantityLabel {
+  font-size: 0.875rem;
+  color: #a3a3a3;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.quantityControls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}

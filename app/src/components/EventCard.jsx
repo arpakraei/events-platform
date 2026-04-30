@@ -33,9 +33,17 @@ export default function EventCard({
       </div>
       <div className={styles.price}>{price === 0 ? "Free" : `€${price}`}</div>
       <div className={styles.row}>
-        {ticketsAvailable === 0
-          ? "Sold Out"
-          : `${ticketsAvailable} of ${totalTickets} tickets left`}{" "}
+        <span
+          className={
+            ticketsAvailable === 0
+              ? styles.statusSoldOut
+              : styles.statusAvailable
+          }
+        >
+          {ticketsAvailable === 0
+            ? "Sold Out"
+            : `${ticketsAvailable} tickets left`}
+        </span>
       </div>
     </article>
   );

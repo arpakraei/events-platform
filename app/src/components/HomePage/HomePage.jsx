@@ -1,18 +1,9 @@
 // Feel free to replace the content of this component with your own
+import EventCard from "../EventCard.jsx";
+import events from "../../data/events.js";
+import EventDetail from "../EventDetail/EventDetail.jsx";
 function HomePage() {
-  return (
-    <div
-      style={{
-        padding: "20px",
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      Welcome to the homepage!
-    </div>
-  );
+  return <EventDetail event={events[0]} />;
 }
 
 export default HomePage;

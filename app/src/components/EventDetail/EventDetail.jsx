@@ -1,19 +1,8 @@
 import styles from "./EventDetail.module.css";
+import { useState } from "react";
 
-const event = {
-  name: "React Copenhagen Conference 2026",
-  date: "2026-04-15",
-  time: "09:00",
-  venue: "Copenhagen Concert Hall",
-  city: "Copenhagen",
-  description:
-    "The largest React conference in Scandinavia. Two tracks covering the latest in React 19, Server Components, and the evolving frontend ecosystem. Keynotes from core React team members and community leaders.",
-  price: 149,
-  category: "Conference",
-  status: "Sold out",
-};
-
-export default function EventDetail() {
+export default function EventDetail({ event }) {
+  const [quantity, setQuantity] = useState(0);
   return (
     <article className={styles.card}>
       <h2 className={styles.name}>{event.name}</h2>
@@ -46,6 +35,26 @@ export default function EventDetail() {
       <div className={styles.descriptionSection}>
         <span className={styles.descriptionLabel}>Description</span>
         <p className={styles.description}>{event.description}</p>
+      </div>
+      <div className={styles.quantitySelector}>
+        <span className={styles.quantityLabel}>Quantity</span>
+        <div className={styles.quantityControls}>
+          <button
+            className={styles.quantityButton}
+            onClick={() => setQuantity(quantity - 1)}
+            disabled={quantity === 0}
+          >
+            -
+          </button>
+          <span className={styles.quantityValue}>{quantity}</span>
+          <button
+            className={styles.quantityButton}
+            onClick={() => setQuantity(quantity + 1)}
+            disabled={quantity === event.ticketsAvailable}
+          >
+            +
+          </button>
+        </div>
       </div>
     </article>
   );

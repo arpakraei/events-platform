@@ -11,7 +11,7 @@ const events = [
     description:
       "The largest React conference in Scandinavia. Two tracks covering the latest in React 19, Server Components, and the evolving frontend ecosystem. Keynotes from core React team members and community leaders.",
     price: 149,
-    ticketsAvailable: 0,
+    ticketsAvailable: 2,
     totalTickets: 800,
     category: "Conference",
   },
