@@ -21,15 +21,17 @@ export default function EventList() {
         />
       </div>
       <div>
-        <ul>
-          {filteredEvents.map((event) => {
-            return (
+        {filteredEvents.length === 0 ? (
+          <p>No events found for this category</p>
+        ) : (
+          <ul>
+            {filteredEvents.map((event) => (
               <li key={event.id}>
                 <EventCard {...event} />
               </li>
-            );
-          })}
-        </ul>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );
