@@ -9,6 +9,13 @@
   transition:
     box-shadow 0.2s ease,
     transform 0.2s ease;
+
+  animation: slideLeft linear forwards;
+  animation-timeline: --cards;
+
+  animation-range: exit-crossing
+    calc((var(--index) - 1) / var(--numcards) * 100%) exit-crossing
+    calc(var(--index) / var(--numcards) * 100%);
 }
 
 .card:hover {
@@ -66,4 +73,18 @@
 }
 li {
   list-style: none;
+}
+/* Animation */
+
+.cards li {
+  position: sticky;
+  top: 0;
+
+  padding-top: calc(var(--index) * var(--card-top-offset));
+}
+@keyframes slideLeft {
+  to {
+    transform: translateX(calc(-20px * var(--index)));
+    opacity: 0.85;
+  }
 }
