@@ -9,8 +9,8 @@ import style from "./EventList.module.css";
 
 export default function EventList() {
   const [events, setEvents] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [err, setError] = useState("");
+  const [loading, setLoading] = useState(true);
   const [filterCategory, setFilterCategory] = useState("All");
   useEffect(() => {
     const fetchData = async () => {
