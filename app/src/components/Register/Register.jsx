@@ -2,6 +2,7 @@
 // TODO: call register(email, password) from useAuth() on submit
 // TODO: show a clear error message if registration fails
 // TODO: redirect to the event list on success
+import styles from "./Register.module.css";
 import { useAuth } from "../../context/AuthContext";
 
 import { useState } from "react";
@@ -24,28 +25,32 @@ export default function Register() {
     }
   }
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-    >
-      <h1>Register</h1>
-      {err && <p>{err}</p>}
-      <form onSubmit={registerUser}>
-        <label htmlFor="id">Email</label>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Register</h1>
+      {err && <p className={styles.error}>{err}</p>}
+      <form onSubmit={registerUser} className={styles.form}>
+        <label htmlFor="email" className={styles.label}>
+          Email
+        </label>
         <input
           type="email"
           id="email"
           placeholder="email address"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-        ></input>
-        <label htmlFor="password">Password</label>
+          className={styles.input}
+        />
+        <label htmlFor="password" className={styles.label}>
+          Password
+        </label>
         <input
           type="password"
           id="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-        ></input>
-        <button>Register</button>
+          className={styles.input}
+        />
+        <button className={styles.button}>Register</button>
       </form>
     </div>
   );

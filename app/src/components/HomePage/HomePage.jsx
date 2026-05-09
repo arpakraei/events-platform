@@ -2,8 +2,6 @@
 import EventCard from "../EventCard.jsx";
 import events from "../../data/events.js";
 import EventDetail from "../EventDetail/EventDetail.jsx";
-function HomePage() {
-  return <EventDetail id="3" />;
-}
+function HomePage() {}
 
 export default HomePage;
