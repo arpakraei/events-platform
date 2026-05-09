@@ -4,7 +4,7 @@ import knex from "../database_client.js";
 const eventsRouter = express.Router();
 
 eventsRouter.get("/", async (req, res) => {
-  const { search, page = 1, limit = 6 } = req.query;
+  const { search, page = 1, limit = 30 } = req.query;
   const offset = (page - 1) * limit;
 
   let query = knex("events");

@@ -14,6 +14,12 @@ await knex.schema.createTableIfNotExists("events", (table) => {
   table.integer("totalTickets").defaultTo(0);
   table.string("category");
 });
+await knex.schema.createTableIfNotExists("users", (table) => {
+  table.increments("id");
+  table.string("name").notNullable();
+  table.string("email").notNullable();
+  table.string("password").notNullable();
+});
 
 await knex("events").insert([
   {
