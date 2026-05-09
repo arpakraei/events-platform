@@ -14,9 +14,20 @@ export default function Login() {
   const [err, setError] = useState("");
   const { login } = useAuth();
   const navigate = useNavigate();
+  const [validationErrorMessage, setValidationErrorMessage] = useState("");
+
+  function validate() {
+    if (!email || !password) {
+      setValidationErrorMessage("Email and Password are required");
+      return false;
+    }
+    return true;
+  }
 
   async function loginUser(e) {
     e.preventDefault();
+    const isValidate = validate();
+    if (!isValidate) return;
     try {
       await login(email, password);
       navigate("/events");
@@ -28,6 +39,7 @@ export default function Login() {
     <div className={styles.container}>
       <h1 className={styles.title}>Login</h1>
       {err && <p className={styles.error}>{err}</p>}
+      {validationErrorMessage && <p>{validationErrorMessage}</p>}
       <form onSubmit={loginUser} className={styles.form}>
         <label htmlFor="email" className={styles.label}>
           Email
