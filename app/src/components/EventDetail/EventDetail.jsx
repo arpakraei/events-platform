@@ -1,11 +1,13 @@
 import styles from "./EventDetail.module.css";
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-export default function EventDetail({ id }) {
+export default function EventDetail() {
   const [quantity, setQuantity] = useState(0);
   const [err, setError] = useState("");
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { id } = useParams();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -24,7 +26,7 @@ export default function EventDetail({ id }) {
       }
     };
     fetchData();
-  }, []);
+  }, [id]);
   if (err) {
     return <p>{err}</p>;
   }
