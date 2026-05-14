@@ -1,0 +1,104 @@
+.card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 2.5rem;
+  max-width: 560px;
+  width: 100%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  border: 1px solid #e5e5e5;
+}
+
+.title {
+  margin: 0 0 2rem 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #171717;
+}
+
+.emptyMessage {
+  font-size: 1rem;
+  color: #a3a3a3;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.itemList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.itemName {
+  flex: 1;
+  font-size: 0.9375rem;
+  color: #171717;
+  font-weight: 500;
+}
+
+.itemQuantity {
+  font-size: 0.875rem;
+  color: #a3a3a3;
+  min-width: 2rem;
+  text-align: center;
+}
+
+.itemPrice {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #525252;
+  min-width: 4rem;
+  text-align: right;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.totalLabel {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #171717;
+}
+
+.totalPrice {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.checkoutButton {
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #2563eb;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.checkoutButton:hover {
+  background-color: #1d4ed8;
+}
+
+.checkoutButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+}

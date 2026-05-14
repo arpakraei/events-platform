@@ -3,8 +3,11 @@ const CartContext = createContext(null);
 
 export function CartProvider({ children }) {
   const [items, setItems] = useState([]);
-  const addToCart = ({ id, quantity }) => {
-    setItems((prev) => [...prev, { id: id, quantity: quantity }]);
+  const addToCart = ({ id, quantity, name, price }) => {
+    setItems((prev) => [
+      ...prev,
+      { id: id, name: name, price: price, quantity: quantity },
+    ]);
   };
 
   const updateCart = ({ id, quantity }) => {

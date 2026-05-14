@@ -1,6 +1,7 @@
 import styles from "./EventDetail.module.css";
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { useCart } from "../../context/CartContext";
 
 export default function EventDetail() {
   const [quantity, setQuantity] = useState(0);
@@ -8,6 +9,7 @@ export default function EventDetail() {
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
+  const { items, addToCart } = useCart();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -27,6 +29,8 @@ export default function EventDetail() {
     };
     fetchData();
   }, [id]);
+
+  console.log(items);
   if (err) {
     return <p>{err}</p>;
   }
@@ -85,6 +89,14 @@ export default function EventDetail() {
               +
             </button>
           </div>
+          <button
+            className={styles.addToCart}
+            onClick={() =>
+              addToCart({ id, name: event.name, price: event.price, quantity })
+            }
+          >
+            Add to Cart
+          </button>
         </div>
       </article>
     );

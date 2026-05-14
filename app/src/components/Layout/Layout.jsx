@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
 import style from "./Layout.module.css";
 
 export default function Layout() {
@@ -9,12 +10,13 @@ export default function Layout() {
       <header className={style.header}>
         {user ? (
           <nav className={style.nav}>
-            <a href="/events" className={style.navLink}>
+            <Link to="/events" className={style.navLink}>
               Events
-            </a>
-            <a href="/cart" className={style.navLink}>
+            </Link>
+
+            <Link to="/cart" className={style.navLink}>
               Cart
-            </a>
+            </Link>
 
             <a onClick={logout} className={style.navLink}>
               Sign out
@@ -22,15 +24,15 @@ export default function Layout() {
           </nav>
         ) : (
           <nav className={style.nav}>
-            <a href="/events" className={style.navLink}>
+            <Link to="/events" className={style.navLink}>
               Events
-            </a>
-            <a href="/register" className={style.navLink}>
+            </Link>
+            <Link to="/register" className={style.navLink}>
               Register
-            </a>
-            <a href="/login" className={style.navLink}>
+            </Link>
+            <Link to="/login" className={style.navLink}>
               Login
-            </a>
+            </Link>
           </nav>
         )}
       </header>
