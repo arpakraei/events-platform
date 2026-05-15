@@ -2,7 +2,7 @@ import styles from "./CartPage.module.css";
 import { useCart } from "../../context/CartContext";
 
 export default function CartPage() {
-  const { items } = useCart();
+  const { items, updateCart, removeFromCart } = useCart();
   const total = items.reduce(
     (sum, item) => sum + item.quantity * item.price,
     0,
@@ -25,10 +25,35 @@ export default function CartPage() {
         {items.map((item) => (
           <li key={item.id} className={styles.item}>
             <span className={styles.itemName}>{item.name}</span>
-            <span className={styles.itemQuantity}>x{item.quantity}</span>
+            <div className={styles.quantityControls}>
+              <button
+                className={styles.quantityButton}
+                onClick={() =>
+                  updateCart({ id: item.id, quantity: item.quantity - 1 })
+                }
+                disabled={item.quantity === 1}
+              >
+                -
+              </button>
+              <span className={styles.itemQuantity}>{item.quantity}</span>
+              <button
+                className={styles.quantityButton}
+                onClick={() =>
+                  updateCart({ id: item.id, quantity: item.quantity + 1 })
+                }
+              >
+                +
+              </button>
+            </div>
             <span className={styles.itemPrice}>
               €{item.quantity * item.price}
             </span>
+            <button
+              className={styles.removeButton}
+              onClick={() => removeFromCart(item.id)}
+            >
+              Remove
+            </button>
           </li>
         ))}
       </ul>

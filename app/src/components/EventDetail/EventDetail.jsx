@@ -30,7 +30,6 @@ export default function EventDetail() {
     fetchData();
   }, [id]);
 
-  console.log(items);
   if (err) {
     return <p>{err}</p>;
   }
