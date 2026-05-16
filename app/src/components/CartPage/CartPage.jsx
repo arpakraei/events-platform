@@ -1,8 +1,12 @@
 import styles from "./CartPage.module.css";
 import { useCart } from "../../context/CartContext";
+import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function CartPage() {
   const { items, updateCart, removeFromCart } = useCart();
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const total = items.reduce(
     (sum, item) => sum + item.quantity * item.price,
     0,
@@ -61,7 +65,12 @@ export default function CartPage() {
         <span className={styles.totalLabel}>Total</span>
         <span className={styles.totalPrice}>€{total}</span>
       </div>
-      <button className={styles.checkoutButton}>Checkout</button>
+      <button
+        onClick={() => (!user ? navigate("/login") : console.log("Check out"))}
+        className={styles.checkoutButton}
+      >
+        Checkout
+      </button>
     </div>
   );
 }

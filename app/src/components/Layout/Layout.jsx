@@ -27,9 +27,13 @@ export default function Layout() {
             <Link to="/events" className={style.navLink}>
               Events
             </Link>
+            <Link to="/cart" className={style.navLink}>
+              Cart
+            </Link>
             <Link to="/register" className={style.navLink}>
               Register
             </Link>
+
             <Link to="/login" className={style.navLink}>
               Login
             </Link>
