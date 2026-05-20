@@ -2,10 +2,11 @@ import styles from "./CartPage.module.css";
 import { useCart } from "../../context/CartContext";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function CartPage() {
   const { items, updateCart, removeFromCart } = useCart();
-  const { user } = useAuth();
+  const { user, token } = useAuth();
   const navigate = useNavigate();
   const total = items.reduce(
     (sum, item) => sum + item.quantity * item.price,
@@ -13,6 +14,20 @@ export default function CartPage() {
   );
   const isEmpty = items.length === 0;
 
+  async function registerOrder() {
+    const response = await fetch("http://localhost:3001/api/orders", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ items }),
+    });
+
+    const data = await response.json();
+
+    console.log(data);
+  }
   if (isEmpty) {
     return (
       <div className={styles.card}>
@@ -66,7 +81,7 @@ export default function CartPage() {
         <span className={styles.totalPrice}>€{total}</span>
       </div>
       <button
-        onClick={() => (!user ? navigate("/login") : console.log("Check out"))}
+        onClick={() => (!user ? navigate("/login") : registerOrder())}
         className={styles.checkoutButton}
       >
         Checkout
