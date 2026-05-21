@@ -1,52 +1,64 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
+import styles from "./Order.module.css";
 
 export default function Orders() {
   const { token } = useAuth();
   const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (!token) return;
 
     async function fetchOrders() {
-      const response = await fetch("http://localhost:3001/api/orders", {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      try {
+        const response = await fetch("http://localhost:3001/api/orders", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-      const data = await response.json();
-      setOrders(data);
+        const data = await response.json();
+        setOrders(data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
     }
 
     fetchOrders();
   }, [token]);
-
+  if (loading) return <p className={styles.loading}>Loading orders...</p>;
+  if (error) return <p className={styles.error}>{error}</p>;
   return (
-    <div>
-      <h1>Orders</h1>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Orders</h1>
 
       {orders.length === 0 && <p>You have no orders yet.</p>}
-      <table>
-        <thead>
+      <table className={styles.table}>
+        <thead className={styles.thead}>
           <tr>
-            <th>Id</th>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Action</th>
+            <th className={styles.th}>Id</th>
+            <th className={styles.th}>Date</th>
+            <th className={styles.th}>Description</th>
+            <th className={styles.th}>Action</th>
           </tr>
         </thead>
 
-        <tbody>
+        <tbody className={styles.tbody}>
           {orders.map((item) => (
             <tr key={item.id}>
-              <td>{item.id}</td>
-              <td>{item.createdAt}</td>
-              <td>{item.description}</td>
+              <td className={styles.td}>{item.id}</td>
+              <td className={styles.td}>{item.createdAt}</td>
+              <td className={styles.td}>{item.description}</td>
               <td>
-                <Link to={`/orders/${item.id}`}>Details</Link>
+                <Link to={`/orders/${item.id}`} className={styles.detailsLink}>
+                  Details
+                </Link>
               </td>
             </tr>
           ))}

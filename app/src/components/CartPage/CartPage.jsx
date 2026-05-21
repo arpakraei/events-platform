@@ -2,12 +2,14 @@ import styles from "./CartPage.module.css";
 import { useCart } from "../../context/CartContext";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useState } from "react";
 
 export default function CartPage() {
-  const { items, updateCart, removeFromCart } = useCart();
+  const { items, updateCart, removeFromCart, clearCart } = useCart();
   const { user, token } = useAuth();
   const navigate = useNavigate();
+  const [message, setMessage] = useState("");
+  const [isError, setIsError] = useState(false);
   const total = items.reduce(
     (sum, item) => sum + item.quantity * item.price,
     0,
@@ -15,23 +17,45 @@ export default function CartPage() {
   const isEmpty = items.length === 0;
 
   async function registerOrder() {
-    const response = await fetch("http://localhost:3001/api/orders", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ items }),
-    });
+    try {
+      const response = await fetch("http://localhost:3001/api/orders", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ items }),
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    console.log(data);
+      if (!response.ok) {
+        setIsError(true);
+        setMessage(data.message || "Failed to create order");
+        return;
+      }
+
+      setIsError(false);
+      setMessage(
+        `Order created successfully. Your order id is: ${data.orderId}`,
+      );
+      clearCart();
+    } catch (error) {
+      setIsError(true);
+      setMessage("Something went wrong. Please try again.");
+    }
   }
   if (isEmpty) {
     return (
       <div className={styles.card}>
         <h2 className={styles.title}>Your Cart</h2>
+
+        {message && (
+          <p className={isError ? styles.errorMessage : styles.successMessage}>
+            {message}
+          </p>
+        )}
+
         <p className={styles.emptyMessage}>Your cart is empty.</p>
       </div>
     );
@@ -40,6 +64,11 @@ export default function CartPage() {
   return (
     <div className={styles.card}>
       <h2 className={styles.title}>Your Cart</h2>
+      {message && (
+        <p className={isError ? styles.errorMessage : styles.successMessage}>
+          {message}
+        </p>
+      )}
       <ul className={styles.itemList}>
         {items.map((item) => (
           <li key={item.id} className={styles.item}>
