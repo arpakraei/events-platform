@@ -17,6 +17,9 @@ export default function Layout() {
             <Link to="/cart" className={style.navLink}>
               Cart
             </Link>
+            <Link to="/orders" className={style.navLink}>
+              Order
+            </Link>
 
             <a onClick={logout} className={style.navLink}>
               Sign out
