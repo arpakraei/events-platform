@@ -10,6 +10,9 @@ export default function Layout() {
       <header className={style.header}>
         {user ? (
           <nav className={style.nav}>
+            <Link to="/" className={style.navLink}>
+              Home
+            </Link>
             <Link to="/events" className={style.navLink}>
               Events
             </Link>
@@ -27,6 +30,9 @@ export default function Layout() {
           </nav>
         ) : (
           <nav className={style.nav}>
+            <Link to="/" className={style.navLink}>
+              Home
+            </Link>
             <Link to="/events" className={style.navLink}>
               Events
             </Link>
