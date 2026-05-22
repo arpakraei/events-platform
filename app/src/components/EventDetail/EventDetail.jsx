@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { useCart } from "../../context/CartContext";
 import { Link } from "react-router-dom";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function EventDetail() {
   const [quantity, setQuantity] = useState(0);
@@ -16,7 +17,7 @@ export default function EventDetail() {
       try {
         setLoading(true);
 
-        const response = await fetch(`http://localhost:3001/api/events/${id}`);
+        const response = await fetch(`${API_URL}/api/events/${id}`);
         if (!response.ok) {
           throw new Error("Can not fetch data");
         }

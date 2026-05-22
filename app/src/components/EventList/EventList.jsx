@@ -14,10 +14,11 @@ export default function EventList() {
   const [filterCategory, setFilterCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
   const [deboundSearch, setDeboundSearch] = useState("");
+  const API_URL = import.meta.env.VITE_API_URL;
 
   //serch bar
 
-  const url = `http://localhost:3001/api/events?search=${deboundSearch}`;
+  const url = `${API_URL}/api/events?search=${deboundSearch}`;
   useEffect(() => {
     const timer = setTimeout(() => {
       setDeboundSearch(searchTerm);

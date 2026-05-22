@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import styles from "./OrderDetails.module.css";
 import { Link } from "react-router-dom";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function OrderDetails() {
   const { id } = useParams();
@@ -16,7 +17,7 @@ export default function OrderDetails() {
 
     async function fetchOrderDetails() {
       try {
-        const response = await fetch(`http://localhost:3001/api/orders/${id}`, {
+        const response = await fetch(`${API_URL}/api/orders/${id}`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,

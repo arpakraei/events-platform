@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 import styles from "./Order.module.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function Orders() {
   const { token } = useAuth();
@@ -14,7 +15,7 @@ export default function Orders() {
 
     async function fetchOrders() {
       try {
-        const response = await fetch("http://localhost:3001/api/orders", {
+        const response = await fetch(`${API_URL}/api/orders`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,

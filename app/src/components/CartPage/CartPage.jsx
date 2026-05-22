@@ -3,6 +3,7 @@ import { useCart } from "../../context/CartContext";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function CartPage() {
   const { items, updateCart, removeFromCart, clearCart } = useCart();
@@ -18,7 +19,7 @@ export default function CartPage() {
 
   async function registerOrder() {
     try {
-      const response = await fetch("http://localhost:3001/api/orders", {
+      const response = await fetch(`${API_URL}/api/orders`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
