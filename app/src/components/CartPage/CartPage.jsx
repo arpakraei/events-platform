@@ -62,59 +62,61 @@ export default function CartPage() {
   }
 
   return (
-    <div className={styles.card}>
-      <h2 className={styles.title}>Your Cart</h2>
-      {message && (
-        <p className={isError ? styles.errorMessage : styles.successMessage}>
-          {message}
-        </p>
-      )}
-      <ul className={styles.itemList}>
-        {items.map((item) => (
-          <li key={item.id} className={styles.item}>
-            <span className={styles.itemName}>{item.name}</span>
-            <div className={styles.quantityControls}>
+    <main className={styles.page}>
+      <div className={styles.card}>
+        <h2 className={styles.title}>Your Cart</h2>
+        {message && (
+          <p className={isError ? styles.errorMessage : styles.successMessage}>
+            {message}
+          </p>
+        )}
+        <ul className={styles.itemList}>
+          {items.map((item) => (
+            <li key={item.id} className={styles.item}>
+              <span className={styles.itemName}>{item.name}</span>
+              <div className={styles.quantityControls}>
+                <button
+                  className={styles.quantityButton}
+                  onClick={() =>
+                    updateCart({ id: item.id, quantity: item.quantity - 1 })
+                  }
+                  disabled={item.quantity === 1}
+                >
+                  -
+                </button>
+                <span className={styles.itemQuantity}>{item.quantity}</span>
+                <button
+                  className={styles.quantityButton}
+                  onClick={() =>
+                    updateCart({ id: item.id, quantity: item.quantity + 1 })
+                  }
+                >
+                  +
+                </button>
+              </div>
+              <span className={styles.itemPrice}>
+                €{item.quantity * item.price}
+              </span>
               <button
-                className={styles.quantityButton}
-                onClick={() =>
-                  updateCart({ id: item.id, quantity: item.quantity - 1 })
-                }
-                disabled={item.quantity === 1}
+                className={styles.removeButton}
+                onClick={() => removeFromCart(item.id)}
               >
-                -
+                Remove
               </button>
-              <span className={styles.itemQuantity}>{item.quantity}</span>
-              <button
-                className={styles.quantityButton}
-                onClick={() =>
-                  updateCart({ id: item.id, quantity: item.quantity + 1 })
-                }
-              >
-                +
-              </button>
-            </div>
-            <span className={styles.itemPrice}>
-              €{item.quantity * item.price}
-            </span>
-            <button
-              className={styles.removeButton}
-              onClick={() => removeFromCart(item.id)}
-            >
-              Remove
-            </button>
-          </li>
-        ))}
-      </ul>
-      <div className={styles.totalRow}>
-        <span className={styles.totalLabel}>Total</span>
-        <span className={styles.totalPrice}>€{total}</span>
+            </li>
+          ))}
+        </ul>
+        <div className={styles.totalRow}>
+          <span className={styles.totalLabel}>Total</span>
+          <span className={styles.totalPrice}>€{total}</span>
+        </div>
+        <button
+          onClick={() => (!user ? navigate("/login") : registerOrder())}
+          className={styles.checkoutButton}
+        >
+          Checkout
+        </button>
       </div>
-      <button
-        onClick={() => (!user ? navigate("/login") : registerOrder())}
-        className={styles.checkoutButton}
-      >
-        Checkout
-      </button>
-    </div>
+    </main>
   );
 }

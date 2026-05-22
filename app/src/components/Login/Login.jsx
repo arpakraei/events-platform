@@ -36,34 +36,36 @@ export default function Login() {
     }
   }
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Login</h1>
-      {err && <p className={styles.error}>{err}</p>}
-      {validationErrorMessage && <p>{validationErrorMessage}</p>}
-      <form onSubmit={loginUser} className={styles.form}>
-        <label htmlFor="email" className={styles.label}>
-          Email
-        </label>
-        <input
-          type="email"
-          id="email"
-          placeholder="email address"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className={styles.input}
-        />
-        <label htmlFor="password" className={styles.label}>
-          Password
-        </label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className={styles.input}
-        />
-        <button className={styles.button}>Login</button>
-      </form>
-    </div>
+    <main className={styles.page}>
+      <div className={styles.container}>
+        <h1 className={styles.title}>Login</h1>
+        {err && <p className={styles.error}>{err}</p>}
+        {validationErrorMessage && <p>{validationErrorMessage}</p>}
+        <form onSubmit={loginUser} className={styles.form}>
+          <label htmlFor="email" className={styles.label}>
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            placeholder="email address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className={styles.input}
+          />
+          <label htmlFor="password" className={styles.label}>
+            Password
+          </label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className={styles.input}
+          />
+          <button className={styles.button}>Login</button>
+        </form>
+      </div>
+    </main>
   );
 }

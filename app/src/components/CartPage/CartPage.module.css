@@ -175,3 +175,10 @@
   color: red;
   font-weight: 600;
 }
+.page {
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
