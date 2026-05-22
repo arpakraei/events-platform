@@ -30,7 +30,7 @@ await knex.schema.createTableIfNotExists("events", (table) => {
 });
 await knex.schema.createTableIfNotExists("users", (table) => {
   table.increments("id");
-  table.string("name").notNullable();
+  table.string("name");
   table.string("email").notNullable();
   table.string("password").notNullable();
 });
