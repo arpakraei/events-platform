@@ -1,6 +1,6 @@
 import styles from "./EventDetail.module.css";
 import { useParams } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useCart } from "../../context/CartContext";
 import { Link } from "react-router-dom";
 const API_URL = import.meta.env.VITE_API_URL;
@@ -11,7 +11,8 @@ export default function EventDetail() {
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
-  const { items, addToCart } = useCart();
+  const { addToCart } = useCart();
+  const [successMessage, setSuccessMessage] = useState("");
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -32,6 +33,20 @@ export default function EventDetail() {
     fetchData();
   }, [id]);
 
+  function handleAddToCart() {
+    addToCart({
+      id,
+      name: event.name,
+      price: event.price,
+      quantity,
+    });
+
+    setSuccessMessage(`${quantity} ticket(s) added to your cart.`);
+
+    setTimeout(() => {
+      setSuccessMessage("");
+    }, 3000);
+  }
   if (err) {
     return <p>{err}</p>;
   }
@@ -101,18 +116,14 @@ export default function EventDetail() {
             </div>
             <button
               className={styles.addToCart}
-              onClick={() =>
-                addToCart({
-                  id,
-                  name: event.name,
-                  price: event.price,
-                  quantity,
-                })
-              }
+              onClick={handleAddToCart}
               disabled={event.ticketsAvailable === 0}
             >
               Add to Cart
             </button>
+            {successMessage && (
+              <div className={styles.toast}>{successMessage}</div>
+            )}
           </div>
         </article>
       </main>
