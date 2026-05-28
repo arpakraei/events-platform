@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const API_URL = import.meta.env.VITE_API_URL;
 
 export default function EventDetail() {
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const [err, setError] = useState("");
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -83,7 +83,7 @@ export default function EventDetail() {
               <button
                 className={styles.quantityButton}
                 onClick={() => setQuantity(quantity - 1)}
-                disabled={quantity === 0}
+                disabled={quantity === 1 || event.ticketsAvailable === 0}
               >
                 -
               </button>
@@ -91,7 +91,10 @@ export default function EventDetail() {
               <button
                 className={styles.quantityButton}
                 onClick={() => setQuantity(quantity + 1)}
-                disabled={quantity === event.ticketsAvailable}
+                disabled={
+                  quantity === event.ticketsAvailable ||
+                  event.ticketsAvailable === 0
+                }
               >
                 +
               </button>
@@ -106,6 +109,7 @@ export default function EventDetail() {
                   quantity,
                 })
               }
+              disabled={event.ticketsAvailable === 0}
             >
               Add to Cart
             </button>

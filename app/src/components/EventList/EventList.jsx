@@ -88,7 +88,7 @@ export default function EventList() {
               style={{ "--numcards": filteredEvents.length }}
             >
               {filteredEvents.map((event, index) => (
-                <li key={event.id} style={{ "--index": index + 1 }}>
+                <li key={event.id}>
                   <EventCard {...event} />
                 </li>
               ))}
