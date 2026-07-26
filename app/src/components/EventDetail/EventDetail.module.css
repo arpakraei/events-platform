@@ -154,3 +154,36 @@
   outline: none;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
 }
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #171717;
+}
+
+.backLink {
+  font-size: 0.875rem;
+  color: #a3a3a3;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: color 0.15s;
+}
+
+.backLink:hover {
+  color: #525252;
+}
+.page {
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}

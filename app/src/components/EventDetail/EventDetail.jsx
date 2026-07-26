@@ -2,6 +2,7 @@ import styles from "./EventDetail.module.css";
 import { useParams } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { useCart } from "../../context/CartContext";
+import { Link } from "react-router-dom";
 
 export default function EventDetail() {
   const [quantity, setQuantity] = useState(0);
@@ -37,66 +38,78 @@ export default function EventDetail() {
     return <p>Data is loading</p>;
   } else
     return (
-      <article className={styles.card}>
-        <h2 className={styles.name}>{event.name}</h2>
-        <div className={styles.details}>
-          <div className={styles.row}>
-            <span className={styles.label}>Date</span>
-            <span className={styles.value}>{event.date}</span>
-          </div>
-          <div className={styles.row}>
-            <span className={styles.label}>Time</span>
-            <span className={styles.value}>{event.time}</span>
-          </div>
-          <div className={styles.row}>
-            <span className={styles.label}>City</span>
-            <span className={styles.value}>{event.city}</span>
-          </div>
-          <div className={styles.row}>
-            <span className={styles.label}>Venue</span>
-            <span className={styles.value}>{event.venue}</span>
-          </div>
-          <div className={styles.row}>
-            <span className={styles.label}>Category</span>
-            <span className={styles.value}>{event.category}</span>
-          </div>
+      <main>
+        <div className={styles.header}>
+          <Link to="/events" className={styles.backLink}>
+            ← Back to events
+          </Link>
         </div>
-        <div className={styles.footer}>
-          <span className={styles.price}>€{event.price}</span>
-          <span className={styles.status}>{event.status}</span>
-        </div>
-        <div className={styles.descriptionSection}>
-          <span className={styles.descriptionLabel}>Description</span>
-          <p className={styles.description}>{event.description}</p>
-        </div>
-        <div className={styles.quantitySelector}>
-          <span className={styles.quantityLabel}>Quantity</span>
-          <div className={styles.quantityControls}>
+        <article className={styles.card}>
+          <h2 className={styles.name}>{event.name}</h2>
+          <div className={styles.details}>
+            <div className={styles.row}>
+              <span className={styles.label}>Date</span>
+              <span className={styles.value}>{event.date}</span>
+            </div>
+            <div className={styles.row}>
+              <span className={styles.label}>Time</span>
+              <span className={styles.value}>{event.time}</span>
+            </div>
+            <div className={styles.row}>
+              <span className={styles.label}>City</span>
+              <span className={styles.value}>{event.city}</span>
+            </div>
+            <div className={styles.row}>
+              <span className={styles.label}>Venue</span>
+              <span className={styles.value}>{event.venue}</span>
+            </div>
+            <div className={styles.row}>
+              <span className={styles.label}>Category</span>
+              <span className={styles.value}>{event.category}</span>
+            </div>
+          </div>
+          <div className={styles.footer}>
+            <span className={styles.price}>€{event.price}</span>
+            <span className={styles.status}>{event.status}</span>
+          </div>
+          <div className={styles.descriptionSection}>
+            <span className={styles.descriptionLabel}>Description</span>
+            <p className={styles.description}>{event.description}</p>
+          </div>
+          <div className={styles.quantitySelector}>
+            <span className={styles.quantityLabel}>Quantity</span>
+            <div className={styles.quantityControls}>
+              <button
+                className={styles.quantityButton}
+                onClick={() => setQuantity(quantity - 1)}
+                disabled={quantity === 0}
+              >
+                -
+              </button>
+              <span className={styles.quantityValue}>{quantity}</span>
+              <button
+                className={styles.quantityButton}
+                onClick={() => setQuantity(quantity + 1)}
+                disabled={quantity === event.ticketsAvailable}
+              >
+                +
+              </button>
+            </div>
             <button
-              className={styles.quantityButton}
-              onClick={() => setQuantity(quantity - 1)}
-              disabled={quantity === 0}
+              className={styles.addToCart}
+              onClick={() =>
+                addToCart({
+                  id,
+                  name: event.name,
+                  price: event.price,
+                  quantity,
+                })
+              }
             >
-              -
-            </button>
-            <span className={styles.quantityValue}>{quantity}</span>
-            <button
-              className={styles.quantityButton}
-              onClick={() => setQuantity(quantity + 1)}
-              disabled={quantity === event.ticketsAvailable}
-            >
-              +
+              Add to Cart
             </button>
           </div>
-          <button
-            className={styles.addToCart}
-            onClick={() =>
-              addToCart({ id, name: event.name, price: event.price, quantity })
-            }
-          >
-            Add to Cart
-          </button>
-        </div>
-      </article>
+        </article>
+      </main>
     );
 }

@@ -80,3 +80,10 @@
   outline: none;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
 }
+.page {
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}

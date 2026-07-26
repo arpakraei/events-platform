@@ -54,34 +54,36 @@ export default function Register() {
     }
   }
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Register</h1>
-      {validationErrorMessage && <p>{validationErrorMessage}</p>}
-      {err && <p className={styles.error}>{err}</p>}
-      <form onSubmit={registerUser} className={styles.form}>
-        <label htmlFor="email" className={styles.label}>
-          Email
-        </label>
-        <input
-          type="email"
-          id="email"
-          placeholder="email address"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className={styles.input}
-        />
-        <label htmlFor="password" className={styles.label}>
-          Password
-        </label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className={styles.input}
-        />
-        <button className={styles.button}>Register</button>
-      </form>
-    </div>
+    <main className={styles.page}>
+      <div className={styles.container}>
+        <h1 className={styles.title}>Register</h1>
+        {validationErrorMessage && <p>{validationErrorMessage}</p>}
+        {err && <p className={styles.error}>{err}</p>}
+        <form onSubmit={registerUser} className={styles.form}>
+          <label htmlFor="email" className={styles.label}>
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            placeholder="email address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className={styles.input}
+          />
+          <label htmlFor="password" className={styles.label}>
+            Password
+          </label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className={styles.input}
+          />
+          <button className={styles.button}>Register</button>
+        </form>
+      </div>
+    </main>
   );
 }
