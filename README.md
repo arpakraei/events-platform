@@ -37,7 +37,7 @@ Tech Stack
   bcrypt
 
 Project Structure
-mid-frontend-project/
+events-platform/
 ├── api/ # Express backend
 │ ├── src/
 │ │ ├── routers/
@@ -124,8 +124,6 @@ Weekly Progress
 - Week 5 Checkout, orders & deploy
 
 Deliverables
-
-Trello Board: https://trello.com/invite/b/69eaef76d754739cb3ca2d37/ATTI22238c4cd8938284b6c213af8088ffa2156BA574/event-startup-project
 
 GitHub Repository: git clone https://github.com/arpakraei/events-platform.git
 
