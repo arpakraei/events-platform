@@ -39,9 +39,13 @@ authRouter.post("/login", async (req, res) => {
     if (!user) return res.status(404).json({ error: "User not found" });
     const match = await bcrypt.compare(password, user.password);
     if (match) {
-      const token = jwt.sign({ userId: id }, process.env.JWT_SECRET, {
-        expiresIn: "7d",
-      });
+      const token = jwt.sign(
+  { userId: user.id },
+  process.env.JWT_SECRET,
+  {
+    expiresIn: "7d",
+  },
+);
       res.json({
         accessToken: token,
         user: { id: user.id, email: user.email },
