@@ -87,8 +87,8 @@ Prerequisites
 - npm
 
 1. Clone the repository
-   bashgit clone https://github.com/arpakraei/mid-frontend-project.git
-   cd mid-frontend-project
+   git clone https://github.com/arpakraei/events-platform.git
+   cd events-platform
 2. Set up the API
    bashcd api
    cp .env-template .env
@@ -127,7 +127,7 @@ Deliverables
 
 Trello Board: https://trello.com/invite/b/69eaef76d754739cb3ca2d37/ATTI22238c4cd8938284b6c213af8088ffa2156BA574/event-startup-project
 
-GitHub Repository: https://github.com/arpakraei/mid-frontend-project.git
+GitHub Repository: git clone https://github.com/arpakraei/events-platform.git
 
 Deployed App: https://event-startup-project.vercel.app/
 
