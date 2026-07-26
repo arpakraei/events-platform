@@ -74,8 +74,34 @@
 li {
   list-style: none;
 }
-/* Animation */
 
+.viewDetails {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #2563eb;
+  text-decoration: none;
+  background-color: transparent;
+  border: 1px solid #2563eb;
+  border-radius: 6px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.viewDetails:hover {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.viewDetails:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+/* Animation */
 
 @keyframes slideLeft {
   to {

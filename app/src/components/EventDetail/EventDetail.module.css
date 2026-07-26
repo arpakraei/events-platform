@@ -86,6 +86,7 @@
   color: #525252;
   line-height: 1.6;
 }
+
 .quantitySelector {
   display: flex;
   align-items: center;
@@ -93,14 +94,31 @@
   margin-top: 2rem;
 }
 
+.quantityLabel {
+  font-size: 0.875rem;
+  color: #a3a3a3;
+  font-weight: 500;
+}
+
+.quantityControls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
 .quantityButton {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   border: 1px solid #e5e5e5;
   background: white;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.quantityButton:hover:not(:disabled) {
+  border-color: #2563eb;
 }
 
 .quantityButton:disabled {
@@ -109,20 +127,63 @@
 }
 
 .quantityValue {
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 600;
-  min-width: 24px;
+  min-width: 20px;
   text-align: center;
 }
-.quantityLabel {
+
+.addToCart {
+  margin-left: auto;
+  padding: 0.5rem 1.25rem;
   font-size: 0.875rem;
-  color: #a3a3a3;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #2563eb;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-.quantityControls {
+.addToCart:hover {
+  background-color: #1d4ed8;
+}
+
+.addToCart:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+}
+.header {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #171717;
+}
+
+.backLink {
+  font-size: 0.875rem;
+  color: #a3a3a3;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: color 0.15s;
+}
+
+.backLink:hover {
+  color: #525252;
+}
+.page {
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
 }

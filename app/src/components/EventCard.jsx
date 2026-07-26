@@ -1,6 +1,9 @@
+import { Link } from "react-router-dom";
 import styles from "./EventCard.module.css";
+import EventDetail from "./EventDetail/EventDetail";
 
 export default function EventCard({
+  id,
   name,
   date,
   city,
@@ -44,6 +47,9 @@ export default function EventCard({
             ? "Sold Out"
             : `${ticketsAvailable} tickets left`}
         </span>
+        <Link className={styles.viewDetails} to={`/events/${id}`}>
+          View Details
+        </Link>
       </div>
     </article>
   );

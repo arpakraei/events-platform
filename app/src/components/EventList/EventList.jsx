@@ -53,46 +53,48 @@ export default function EventList() {
   // view
 
   return (
-    <div>
-      <div className={style.searchBar}>
-        <label htmlFor="search" className={style.label}>
-          Search
-        </label>
-        <input
-          type="text"
-          value={searchTerm}
-          id="search"
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className={style.input}
-          placeholder="Search events..."
-        />
-      </div>
+    <main className={style.page}>
       <div>
-        <FilterBar
-          filterCategory={filterCategory}
-          setFilterCategory={setFilterCategory}
-        />
+        <div className={style.searchBar}>
+          <label htmlFor="search" className={style.label}>
+            Search
+          </label>
+          <input
+            type="text"
+            value={searchTerm}
+            id="search"
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className={style.input}
+            placeholder="Search events..."
+          />
+        </div>
+        <div>
+          <FilterBar
+            filterCategory={filterCategory}
+            setFilterCategory={setFilterCategory}
+          />
+        </div>
+        <div>
+          {loading ? (
+            <p>Data is loading...</p>
+          ) : err ? (
+            <p>{err}</p>
+          ) : filteredEvents.length === 0 ? (
+            <p>No events found</p>
+          ) : (
+            <ul
+              className={style.cards}
+              style={{ "--numcards": filteredEvents.length }}
+            >
+              {filteredEvents.map((event, index) => (
+                <li key={event.id} style={{ "--index": index + 1 }}>
+                  <EventCard {...event} />
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
-      <div>
-        {loading ? (
-          <p>Data is loading...</p>
-        ) : err ? (
-          <p>{err}</p>
-        ) : filteredEvents.length === 0 ? (
-          <p>No events found</p>
-        ) : (
-          <ul
-            className={style.cards}
-            style={{ "--numcards": filteredEvents.length }}
-          >
-            {filteredEvents.map((event, index) => (
-              <li key={event.id} style={{ "--index": index + 1 }}>
-                <EventCard {...event} />
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    </div>
+    </main>
   );
 }
